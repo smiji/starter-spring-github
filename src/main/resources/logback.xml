@@ -1,0 +1,59 @@
+<configuration>
+
+    # Console appender
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            # Pattern of log message for console appender
+            <pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger{200}.%M - %msg%n
+            </pattern>
+        </layout>
+    </appender>
+
+    # File appender
+    <appender name="app-logs" class="ch.qos.logback.core.FileAppender">
+        <file>logback/application.log</file>
+        <append>false</append>
+        <encoder>
+            # Pattern of log message for file appender
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5p %m%n</Pattern>
+        </encoder>
+    </appender>
+
+    # File appender
+    <appender name="request-logs" class="ch.qos.logback.core.FileAppender">
+        <file>logback/request.log</file>
+        <append>false</append>
+        <encoder>
+            # Pattern of log message for file appender
+            <pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} %thread %highlight(%-5level) %logger{200}.%M - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    # File appender
+    <appender name="hibernate-logs" class="ch.qos.logback.core.FileAppender">
+        <file>logback/hibernate.log</file>
+        <append>false</append>
+        <encoder>
+            # Pattern of log message for file appender
+            <pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} %thread %highlight(%-5level) %logger{200}.%M - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="ERROR">
+        <appender-ref ref="stdout"/>
+        <appender-ref ref="fout"/>
+    </root>
+
+    <logger name="org.hibernate.SQL" level="TRACE">
+        <appender-ref ref="hibernate-logs"/>
+    </logger>
+
+    <logger name="org.hibernate.orm.jdbc.bind" level="TRACE">
+        <appender-ref ref="hibernate-logs"/>
+    </logger>
+
+    <logger name="com.nac.spgit" level="INFO">
+        <appender-ref ref="app-logs"/>
+    </logger>
+
+</configuration>
