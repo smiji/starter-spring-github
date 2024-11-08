@@ -40,22 +40,23 @@ jobs:
           aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws configure set default.region $AWS_REGION
-          aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin <AWS_ACCOUNT_ID>.dkr.ecr.$AWS_REGION.amazonaws.com
+          aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin 976193251196.dkr.ecr.$AWS_REGION.amazonaws.com
 
       # Step 3: Build the Docker image
     - name: Build Docker image
       env:
-          ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
+          ECR_REPOSITORY: '/web/java-images'
           AWS_REGION: ${{ secrets.AWS_REGION }}
       run: |
-          IMAGE_TAG=<AWS_ACCOUNT_ID>.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:latest
+          echo "Job number is  ${{ github.job }}"
+          IMAGE_TAG=976193251196.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:latest
           docker build -t $IMAGE_TAG .
       
       # Step 4: Push the Docker image to ECR
     - name: Push Docker image to ECR
       env:
-          ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
+          ECR_REPOSITORY: '/web/java-images'
           AWS_REGION: ${{ secrets.AWS_REGION }}
       run: |
-          IMAGE_TAG=<AWS_ACCOUNT_ID>.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:latest
+          IMAGE_TAG=976193251196.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:latest
           docker push $IMAGE_TAG
