@@ -31,4 +31,4 @@ jobs:
          ls target
     - name: Docker build 
       run: | 
-      docker build -t java-webapp:latest .
+        docker build -t java-webapp:latest .
