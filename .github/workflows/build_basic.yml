@@ -48,7 +48,7 @@ jobs:
           ECR_REPOSITORY: '/web/java-images'
           AWS_REGION: ${{ secrets.AWS_REGION }}
       run: |
-          echo "Job number is  ${{ github.job }}"
+          echo "Job number is  ${{ github.run_id }}-${{ github.run_attempt }}"
           IMAGE_TAG=976193251196.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:latest
           docker build -t $IMAGE_TAG .
       
