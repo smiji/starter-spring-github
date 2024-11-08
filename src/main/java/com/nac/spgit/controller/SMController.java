@@ -12,4 +12,9 @@ public class SMController {
     public List<String> getAllSM(){
         return List.of("1 BHK","2 BHK","3 BHK");
     }
+
+    @GetMapping("/")
+    public String getHello(){
+        return "Hello Docker";
+    }
 }
