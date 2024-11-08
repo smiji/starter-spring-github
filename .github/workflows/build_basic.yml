@@ -10,12 +10,12 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main" , "feature/bdd_first_steps" ]
   pull_request:
     branches: [ "main" ]
 
 jobs:
-  build:
+  just_build: # This is not a key word, you can choose any name
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
