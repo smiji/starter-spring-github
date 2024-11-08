@@ -5,7 +5,7 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Copy the JAR file from the target directory to the container
-COPY target/starter-spring-github-1.0-SNAPSHOT.ja app.jar
+COPY target/starter-spring-github-1.0-SNAPSHOT.jar app.jar
 
 # Expose the application's port
 EXPOSE 8080
