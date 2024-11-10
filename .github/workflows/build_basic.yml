@@ -49,7 +49,7 @@ jobs:
           AWS_REGION: ${{ secrets.AWS_REGION }}
       run: |
           echo "Job number is  ${{ github.run_id }}-${{ github.run_attempt }}"
-          IMAGE_TAG=976193251196.dkr.ecr.eu-north-1.amazonaws.com/web/java-images:${{ github.run_id }}-${{ github.run_attempt }}
+          IMAGE_TAG=976193251196.dkr.ecr.eu-west-2.amazonaws.com/web/java-images:${{ github.run_id }}-${{ github.run_attempt }}
           docker build -t $IMAGE_TAG .
       
       # Step 4: Push the Docker image to ECR
@@ -58,5 +58,5 @@ jobs:
           ECR_REPOSITORY: '/web/java-images'
           AWS_REGION: ${{ secrets.AWS_REGION }}
       run: |
-          IMAGE_TAG=976193251196.dkr.ecr.eu-north-1.amazonaws.com/web/java-images:${{ github.run_id }}-${{ github.run_attempt }}
+          IMAGE_TAG=976193251196.dkr.ecr.eu-west-2.amazonaws.com/web/java-images:${{ github.run_id }}-${{ github.run_attempt }}
           docker push $IMAGE_TAG
